@@ -55,10 +55,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
+    
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8974 \
     libxml2
+
+# charging mode
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.enable_boot_charger_mode=1
 
 # Doze
 PRODUCT_PACKAGES += \
@@ -69,9 +77,9 @@ PRODUCT_PACKAGES += \
     gps.msm8974
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/flp.conf:/system/etc/flp.conf \
-    $(LOCAL_PATH)/configs/gps.conf:/system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/sap.conf:/system/etc/sap.conf
+    $(LOCAL_PATH)/etc/flp.conf:/system/etc/flp.conf \
+    $(LOCAL_PATH)/etc/gps.conf:/system/etc/gps.conf \
+    $(LOCAL_PATH)/etc/sap.conf:/system/etc/sap.conf
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
@@ -101,7 +109,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.crda.sh \
+    init.qcom.post_boot.sh \
     init.qcom.rc \
+    init.qcom.power.rc \
     init.qcom.usb.rc \
     init.sec.boot.sh \
     ueventd.qcom.rc
